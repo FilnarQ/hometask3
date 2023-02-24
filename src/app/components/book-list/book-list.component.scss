@@ -1,0 +1,11 @@
+mat-tab-group{
+    .wrapper{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        align-content: center;
+        app-book-list-item{
+            flex: 1 50%;
+        }  
+    }
+}

@@ -1,0 +1,44 @@
+mat-card{
+    flex: 1 100%;
+    display: flex;
+    height: 100px;
+    margin: 8px;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+
+    img{
+        flex: 1 25%;
+    }
+
+    .details{
+        flex: 2 50%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: space-around;
+        align-items: stretch;
+
+        mat-card-header{
+            flex: 1 1 50%;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        mat-card-content{
+            flex: 1 1 50%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    mat-card-actions{
+        flex: 1 25%;
+        display: flex;
+        flex-flow: row-reverse nowrap;
+        justify-content: flex-start;
+        align-items: flex-start;
+        button{
+            flex: 1 30%;
+        }
+    }
+}

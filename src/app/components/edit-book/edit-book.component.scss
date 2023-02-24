@@ -1,0 +1,28 @@
+mat-card{
+    flex:1 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    mat-card-content{
+        width: 90%;
+        form{
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-around;
+            .left{
+                flex: 1 50%;
+                display: flex;
+                flex-flow: column nowrap;
+                align-items: stretch;
+            }
+            .right{
+                flex: 1 50%;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-evenly;
+                align-items: stretch;
+            }
+
+        }
+    }
+}
