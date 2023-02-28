@@ -1,3 +1,13 @@
+# SERVER
+
+Server exe, file with requests to populate database are in `./SERVER/` folder.
+
+# ANGULAR
+
+Run `npm i` to install dependencies, `ng serve` to start the app.
+
+Created rewiew form and star rating in book-details dialog for easier reviews and rating testing
+
 # Hometask3
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.5.
