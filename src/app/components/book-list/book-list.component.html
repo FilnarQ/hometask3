@@ -1,18 +1,28 @@
 <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" animationDuration="0ms">
     <mat-tab label="All">
-        <div class="wrapper">
-            <app-book-list-item></app-book-list-item>
-            <app-book-list-item></app-book-list-item>
-            <app-book-list-item></app-book-list-item>
-            <app-book-list-item></app-book-list-item>
+        <div class="wrapper" *ngIf="(books$ | async) as books; else loading">
+            <span *ngIf="books.length==0">
+                No books here
+            </span>
+            <app-book-list-item *ngFor="let book of books; index as i; trackBy: tracker"
+            [book]="books[i]">
+            </app-book-list-item>
         </div>
+        <ng-template #loading>
+            Loading...
+        </ng-template>
     </mat-tab>
     <mat-tab label="Recommended">
-        <div class="wrapper">
-            <app-book-list-item></app-book-list-item>
-            <app-book-list-item></app-book-list-item>
-            <app-book-list-item></app-book-list-item>
-            <app-book-list-item></app-book-list-item>
+        <div class="wrapper" *ngIf="(recommended$ | async) as books; else loading">
+            <span *ngIf="books.length==0">
+                No books here
+            </span>
+            <app-book-list-item *ngFor="let book of books; index as i"
+            [book]="books[i]">
+            </app-book-list-item>
         </div>
+        <ng-template #loading>
+            Loading...
+        </ng-template>
     </mat-tab>
 </mat-tab-group>

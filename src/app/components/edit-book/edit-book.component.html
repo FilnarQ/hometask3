@@ -1,37 +1,44 @@
 <mat-card>
     <mat-card-header>
-        <mat-card-title> Add/edit book </mat-card-title>
+        <mat-card-title> {{editing?"Edit":"Add"}} book </mat-card-title>
     </mat-card-header>
-    <mat-card-content>
-        <form>
-            <div class="left">
-                <mat-form-field>
-                    <mat-label>Title</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Cover</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Genre</mat-label>
-                    <input matInput>
-                </mat-form-field>
-                <mat-form-field>
-                    <mat-label>Author</mat-label>
-                    <input matInput>
-                </mat-form-field>
-            </div>
-            <div class="right">
-                <mat-form-field>
-                    <mat-label>Content</mat-label>
-                    <textarea matInput></textarea>
-                </mat-form-field>
-            </div>
-        </form>
-    </mat-card-content>
-    <mat-card-actions>
-        <button mat-button>Add</button>
-        <button mat-button>Clear</button>
-    </mat-card-actions>
+        <mat-card-content>
+            <form #bookForm="ngForm">
+                <div class="left">
+                    <mat-form-field>
+                        <mat-label>Title</mat-label>
+                        <input type="text" matInput [(ngModel)]="book.title" name="title" required #title="ngModel">
+                    </mat-form-field>
+                    <div class="cover-upload">
+                        <input type="file" class="file-input" #fileUpload (change)="processImg($event)" required>
+                        <mat-form-field>
+                            <mat-label>Cover</mat-label>
+                            <input matInput disabled [(ngModel)]="book.cover" name="cover" required #cover>
+                        </mat-form-field>
+                        <button mat-mini-fab (click)="fileUpload.click()">
+                            <mat-icon>upload</mat-icon>
+                        </button>
+                    </div>
+                    <mat-form-field>
+                        <mat-label>Genre</mat-label>
+                        <input matInput [(ngModel)]="book.genre" name="genre" required #genre="ngModel">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Author</mat-label>
+                        <input matInput [(ngModel)]="book.author" name="author" required #author="ngModel">
+                        <!-- <mat-error *ngIf="editingForm.hasError('')">This field can not be empty</mat-error> -->
+                    </mat-form-field>
+                </div>
+                <div class="right">
+                    <mat-form-field>
+                        <mat-label>Content</mat-label>
+                        <textarea matInput [(ngModel)]="book.content" name="content" required #content="ngModel"></textarea>
+                    </mat-form-field>
+                </div>
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="onSubmit(); bookForm.reset()" [disabled]="title.errors||cover.value==''||author.errors||genre.errors||content.errors">{{editing?"Save":"Add"}}</button>
+            <button mat-button (click)="onCancel(); bookForm.reset()">{{editing?"Cancel":"Clear"}}</button>
+        </mat-card-actions>
 </mat-card>

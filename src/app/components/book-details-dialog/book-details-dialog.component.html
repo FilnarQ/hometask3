@@ -1,0 +1,41 @@
+<div class="header">
+    <span mat-dialog-title>Details</span><button mat-button mat-dialog-close>X</button>
+</div>
+<div mat-dialog-content class="details-wrapper">
+    <div class="book-info">
+        <div class="left">
+            <img [src]="data.cover">
+            <div class="stats">
+                <span>Rating:{{data.rating}}</span>
+                <span>Reviews:{{data.reviews.length}}</span>
+            </div>
+        </div>
+        <div class="right">
+            <span mat-card-title class="title">{{data.title}}</span>
+            <span mat-card-subtitle class="sub-title">{{data.author}}, {{data.genre}}</span>
+            <p class="content">{{data.content}}</p>
+        </div>
+    </div>
+    <div class="send-review">
+        <form #reviewForm>
+            <mat-form-field>
+                <mat-label>Reviewer</mat-label>
+                <input matInput [(ngModel)]="review.reviewer" name="reviewer">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Message</mat-label>
+                <input matInput [(ngModel)]="review.message" name="message">
+            </mat-form-field>
+            <button (click)="sendReview(); reviewForm.reset()">Send review</button>
+        </form>
+        <li class="score" *ngFor="let score of scores;index as i" (click)="sendScore(scores[i])">
+            <mat-icon [style.color]="active(i)">star</mat-icon>
+        </li>
+    </div>
+    <div class="reviews" *ngIf="data.reviews.length>0">
+        <mat-card *ngFor="let review of data.reviews">
+            <mat-card-title>{{review.reviewer}}</mat-card-title>
+            <mat-card-content>{{review.message}}</mat-card-content>
+        </mat-card>
+    </div>
+</div>

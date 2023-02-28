@@ -1,17 +1,17 @@
 <mat-card>
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
+    <img mat-card-image [src]="book.cover||'https://material.angular.io/assets/img/examples/shiba2.jpg'">
     <div class="details">
-        <mat-card-header><mat-card-title>Book title</mat-card-title></mat-card-header>
+        <mat-card-header><mat-card-title>{{book.title}}</mat-card-title></mat-card-header>
         <mat-card-content>
-            <span>Reviews: 40</span>
-            <span>Rating: 4.2</span>
+            <span>Reviews: {{book.reviewsNumber}}</span>
+            <span>Rating: {{book.rating}}</span>
         </mat-card-content>
     </div>
     <mat-card-actions>
-        <button mat-icon-button class="edit">
+        <button mat-icon-button class="edit" (click)="edit()">
             <mat-icon>edit</mat-icon>
         </button>
-        <button mat-icon-button class="view">
+        <button mat-icon-button class="view" (click)="view()">
             <mat-icon>visibility</mat-icon>
         </button>
     </mat-card-actions>
